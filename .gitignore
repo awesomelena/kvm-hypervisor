@@ -1,0 +1,26 @@
+# Build output
+host/build/
+guest/build/
+
+# Runtime artifacts created by running the hypervisor
+local_vm*/
+
+# Scratch files used when exercising the file API and the shared buffer
+ulaz.txt
+izlaz.txt
+deljeni.txt
+privatni.txt
+lokalni.txt
+shared.txt
+
+# Object and dependency files (in case of an out-of-tree build)
+*.o
+*.d
+*.img
+
+# Editor / OS
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
