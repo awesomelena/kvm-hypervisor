@@ -5,9 +5,6 @@ one or more 64-bit guests in parallel — one POSIX thread and one vCPU per gues
 — and provides them with serial I/O, a sandboxed file API, and an
 interrupt-driven shared buffer for inter-VM communication.
 
-Written from scratch for the *Computer Architecture and Organization 2* course
-at the School of Electrical Engineering, University of Belgrade.
-
 ## What it does
 
 Guests are freestanding programs: no operating system, no libc, no runtime.
