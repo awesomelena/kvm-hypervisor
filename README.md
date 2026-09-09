@@ -32,9 +32,6 @@ the remaining ones still terminate cleanly instead of hanging.
 
 ## Design notes
 
-A few decisions worth calling out, since they're what the implementation is
-actually about:
-
 - **One general-purpose guest image.** `guest.img` learns whether it is the
   writer or a reader by asking the hypervisor on its first interrupt, so the
   same binary serves either role. Running three VMs instead of two is a change
