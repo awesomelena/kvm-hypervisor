@@ -79,7 +79,7 @@ Every `guest/src/main*.c` builds into its own image: `main.c` becomes
 `guest.img`, `main_a_serial.c` becomes `guest_a_serial.img`, and so on.
 `file.c`, `lib.c`, and `interrupts.c` are shared modules linked into each.
 Dropping a new `main_<name>.c` into `guest/src/` is all it takes to add a
-guest — the Makefile picks it up automatically.
+guest - the Makefile picks it up automatically.
 
 | Image | Demonstrates |
 |-------|--------------|
