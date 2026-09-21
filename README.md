@@ -1,7 +1,7 @@
 # kvm-hypervisor
 
 A minimal type-2 hypervisor built directly on the Linux **KVM API**. It boots
-one or more 64-bit guests in parallel — one POSIX thread and one vCPU per guest
+one or more 64-bit guests in parallel - one POSIX thread and one vCPU per guest
 — and provides them with serial I/O, a sandboxed file API, and an
 interrupt-driven shared buffer for inter-VM communication.
 
@@ -14,7 +14,7 @@ hypervisor performs the privileged work on their behalf.
 **Core hypervisor.** Creates a VM through `/dev/kvm`, maps guest memory, builds
 identity-mapped page tables (4KB or 2MB pages), switches the vCPU into long
 mode, loads the guest image, and drives the `KVM_RUN` loop. Serial output and
-input go through port `0xE9`. A guest that faults is torn down on its own —
+input go through port `0xE9`. A guest that faults is torn down on its own -
 the remaining VMs keep running, unaffected.
 
 **File API.** A guest-facing `open`/`close`/`read`/`write`/`lseek` implemented
@@ -27,7 +27,7 @@ everyone and copy-on-write on first write, so the original is never modified.
 Roles (writer / reader) are assigned at runtime and delivered to guests by
 injecting interrupt vector 32. A transfer proceeds in rounds: the writer fills
 the buffer, every live reader is woken and must acknowledge, and only then does
-the writer get its next round. If any VM dies mid-transfer — writer or reader —
+the writer get its next round. If any VM dies mid-transfer - writer or reader -
 the remaining ones still terminate cleanly instead of hanging.
 
 ## Design notes
@@ -40,7 +40,7 @@ the remaining ones still terminate cleanly instead of hanging.
   mutex, and "waiting" is a per-VM pending-interrupt counter plus a poll loop in
   the guest. A guest with nothing to do reads port `0x511`; each of those VM
   exits is the hypervisor's opportunity to inject a pending interrupt.
-- **Isolation by construction.** Per-VM confinement isn't a permission check —
+- **Isolation by construction.** Per-VM confinement isn't a permission check -
   every path a guest opens is built under `local_vm<id>/`. Filename validation
   then rejects anything that could escape it (`..`, absolute paths), since
   each path component must begin with a letter.
@@ -154,7 +154,7 @@ Each VM creates a `local_vm<id>/` directory in the working directory for its
 private files. Clear them between runs with `rm -rf local_vm*`.
 
 > When several VMs write to the serial port at once, their output interleaves
-> byte by byte — an expected consequence of running in parallel threads. File
+> byte by byte - an expected consequence of running in parallel threads. File
 > contents are always consistent, so `cat` and `diff` are the reliable check.
 
 ## Implementation reference
