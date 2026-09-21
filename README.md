@@ -2,7 +2,7 @@
 
 A minimal type-2 hypervisor built directly on the Linux **KVM API**. It boots
 one or more 64-bit guests in parallel - one POSIX thread and one vCPU per guest
-— and provides them with serial I/O, a sandboxed file API, and an
+- and provides them with serial I/O, a sandboxed file API, and an
 interrupt-driven shared buffer for inter-VM communication.
 
 ## What it does
